@@ -1,0 +1,44 @@
+{
+  "app-id": "com.gigitux.gtkwhats",
+  "runtime": "org.gnome.Platform",
+  "runtime-version": "3.36",
+  "sdk": "org.gnome.Sdk",
+  "sdk-extensions": ["org.freedesktop.Sdk.Extension.rust-stable"],
+  "command": "gtkwhats",
+  "finish-args": [
+    "--share=ipc",
+    "--share=network",
+    "--socket=fallback-x11",
+    "--socket=wayland",
+    "--socket=session-bus",
+    "--device=dri"
+  ],
+  "build-options": {
+    "append-path": "/usr/lib/sdk/rust-stable/bin",
+    "env": {
+      "RUSTFLAGS": "--remap-path-prefix =../",
+      "CARGO_HOME": "/run/build/gtkwhats/cargo"
+    }
+  },
+  "modules": [
+    {
+      "name": "gtkwhats",
+      "buildsystem": "simple",
+      "build-commands": [
+        "cargo --offline fetch --manifest-path Cargo.toml --verbose",
+        "cargo --offline build --release --verbose",
+        "install -Dm755 ./target/debug/gtkwhats -t /app/bin/",
+        "install -Dm644 ./data/${FLATPAK_ID}.metainfo.xml -t /app/share/metainfo/",
+        "install -Dm644 ./data/${FLATPAK_ID}.desktop -t /app/share/applications/",
+        "install -Dm644 ./data/${FLATPAK_ID}.svg -t /app/share/icons/hicolor/scalable/apps/"
+      ],
+      "sources": [
+        {
+          "type": "dir",
+          "path": "../"
+        },
+        "generated-sources.json"
+      ]
+    }
+  ]
+}

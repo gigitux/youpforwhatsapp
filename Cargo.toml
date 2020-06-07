@@ -1,0 +1,21 @@
+[package]
+name = "gtkwhats"
+version = "0.1.0"
+authors = ["gigitux <gigitux@gmail.com>"]
+edition = "2018"
+description = "Simple wrapper for Whatsapp Web"
+license = "MIT"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+webkit2gtk ="0.9.2"
+
+
+[dependencies.gtk]
+version = "0.8.1" 
+features = ["v3_16"]
+
+[dependencies.gio]
+version = "0.8.1"
+features = ["v2_44"]
