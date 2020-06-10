@@ -26,6 +26,8 @@ install_data(
     install_dir: datadir / 'icons' / 'hicolor' / 'scalable' / 'apps'
 )
 
+install_data('com.gigitux.gtkwhats.gschema.xml', install_dir: join_paths(datadir, 'glib-2.0', 'schemas'))
+
 sources = [
     'main.rs',
 ]
