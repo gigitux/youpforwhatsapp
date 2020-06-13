@@ -2,3 +2,6 @@
 /repo
 /.flatpak-builder
 /build-dir
+/.flatpak-builder
+/_builddir
+/build-aux/.*
