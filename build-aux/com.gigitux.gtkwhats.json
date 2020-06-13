@@ -11,10 +11,12 @@
     "--socket=fallback-x11",
     "--socket=wayland",
     "--socket=session-bus",
-    "--device=dri"
+    "--device=dri",
+    "--socket=pulseaudio"
   ],
   "build-options": {
     "append-path": "/usr/lib/sdk/rust-stable/bin",
+    "build-args": ["--share=network"],
     "env": {
       "RUSTFLAGS": "--remap-path-prefix =../",
       "CARGO_HOME": "/run/build/gtkwhats/cargo"
@@ -23,22 +25,12 @@
   "modules": [
     {
       "name": "gtkwhats",
-      "buildsystem": "simple",
-      "build-commands": [
-        "cargo --offline fetch --manifest-path Cargo.toml --verbose",
-        "cargo --offline build --release --verbose",
-        "install -Dm755 ./target/debug/gtkwhats -t /app/bin/",
-        "install -Dm644 ./data/${FLATPAK_ID}.metainfo.xml -t /app/share/metainfo/",
-        "install -Dm644 ./data/${FLATPAK_ID}.desktop -t /app/share/applications/",
-        "install -Dm644 ./data/${FLATPAK_ID}.svg -t /app/share/icons/hicolor/scalable/apps/",
-        "install -Dm644 ./data/${FLATPAK_ID}.gschema.xml -t /app/share/icons/hicolor/scalable/apps/"
-      ],
+      "buildsystem": "meson",
       "sources": [
         {
           "type": "dir",
           "path": "../"
-        },
-        "generated-sources.json"
+        }
       ]
     }
   ]

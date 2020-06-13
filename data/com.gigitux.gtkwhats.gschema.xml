@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+   <schema path="/com/gigitux/gtkwhats/" id="com.gigitux.gtkwhats" gettext-domain="gnome-podcasts">
+      <key name="dark-theme" type="b">
+         <default>true</default>
+         <summary>Dark theme is active</summary>
+      </key>
+      <key name="full-screen" type="b">
+         <default>false</default>
+         <summary>Full screen is active</summary>
+      </key>
+      <key name="persist-window-geometry-height" type="i">
+         <default>640</default>
+         <summary>Height of the last open main window</summary>
+      </key>
+      <key name="persist-window-geometry-width" type="i">
+         <default>860</default>
+         <summary>Width of the last open main window</summary>
+      </key>
+   </schema>
+</schemalist>
+

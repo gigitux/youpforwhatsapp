@@ -10,28 +10,24 @@
   </description>
   <screenshots>
     <screenshot type="default">
-      <image>https://gitlab.gnome.org/World/design/contrast/raw/master/data/resources/screenshots/screenshot1.png</image>
+      <image></image>
       <caption>Main Window</caption>
     </screenshot>
   </screenshots>
-  <url type="homepage">https://luigitesch.io</url>
+  <url type="homepage">https://github.com/gigitux/gtkwhats</url>
 <!--
 Open Age Rating Service
 https://hughsie.github.io/oars/index.html
 -->
   <content_rating type="oars-1.0" />
   <releases>
-    <release version="0.0.1" date="2020-02-08">
+    <release version="1.0" date="13-06-2020">
       <description>
-        <p>First release of Rust Flatpak App</p>
+        <p>First release of Gtkwhats</p>
       </description>
     </release>
   </releases>
   <kudos>
-    <!--
-    GNOME Software kudos:
-    https://gitlab.gnome.org/GNOME/gnome-software/blob/master/doc/kudos.md
-    -->
     <kudo>ModernToolkit</kudo>
     <kudo>HiDpiIcon</kudo>
   </kudos>

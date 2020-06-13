@@ -2,7 +2,6 @@
 Name=Whatsapp
 Comment=A simple wrapper for whatsapp
 Type=Application
-# should be the same as the Cargo project name
 Exec=gtkwhats
 Terminal=false
 Categories=Utility;GTK;
