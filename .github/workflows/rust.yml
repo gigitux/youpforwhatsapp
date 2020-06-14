@@ -1,0 +1,27 @@
+name: Rust
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create vender
+        run: cargo vendor
+      - name: Set configuration
+        run: |
+          mkdir .cargo && touch .cargo/.config
+          echo '[source.crates-io] \n  replace-with = \"vendored-sources\" \n [source.vendored-sources] \n  directory = "vendor"' >> .cargo/.config
+      - uses: actions/upload-artifact@v2
+        with:
+          name: flatpak_build
+          path: .
