@@ -19,7 +19,7 @@ jobs:
         run: cargo vendor
       - name: Set configuration
         run: |
-          touch .cargo/.config
+          mkdir .cargo && touch .cargo/.config
           echo '[source.crates-io] \n  replace-with = \"vendored-sources\" \n [source.vendored-sources] \n  directory = "vendor"' >> .cargo/.config
       - uses: actions/upload-artifact@v2
         with:
