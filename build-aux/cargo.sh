@@ -12,8 +12,8 @@ export APP_BIN="$5"
 if [[ $BUILDTYPE = "release" ]]
 then
     echo "RELEASE MODE"
-    cargo build --manifest-path \
-        "$MESON_SOURCE_ROOT"/Cargo.toml --release && \
+    cargo --offline --locked build --release --manifest-path \
+        "$MESON_SOURCE_ROOT"/Cargo.toml && \
         cp "$CARGO_TARGET_DIR"/release/"$APP_BIN" "$OUTPUT"
 else
     echo "DEBUG MODE"
