@@ -20,7 +20,7 @@ jobs:
       - name: Set configuration
         run: |
           mkdir .cargo && touch .cargo/.config
-          echo '[source.crates-io] \n  replace-with = \"vendored-sources\" \n [source.vendored-sources] \n  directory = "vendor"' >> .cargo/.config
+          mv build-aux/cargo_offline_config .cargo/config 
       - name: Create package
         run: |
          touch flatpak.tar
