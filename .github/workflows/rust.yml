@@ -24,7 +24,7 @@ jobs:
       - name: Create package
         run: |
          touch flatpak.tar
-         tar -czvf --exclude=flatpak.tar flatpak.tar .
+         tar --exclude=flatpak.tar -czvf flatpak.tar .
         
       - uses: actions/upload-artifact@v2
         with:
