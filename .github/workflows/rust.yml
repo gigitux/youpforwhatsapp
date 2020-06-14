@@ -22,7 +22,7 @@ jobs:
           mkdir .cargo && touch .cargo/.config
           echo '[source.crates-io] \n  replace-with = \"vendored-sources\" \n [source.vendored-sources] \n  directory = "vendor"' >> .cargo/.config
       - name: Create package
-        run: tar -czvf flatpak.tar *
+        run: tar -czvf flatpak.tar .
         
       - uses: actions/upload-artifact@v2
         with:
