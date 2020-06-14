@@ -10,7 +10,7 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  build:
+  create-package:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,7 +21,12 @@ jobs:
         run: |
           mkdir .cargo && touch .cargo/.config
           echo '[source.crates-io] \n  replace-with = \"vendored-sources\" \n [source.vendored-sources] \n  directory = "vendor"' >> .cargo/.config
+      - name: Create package
+        run: |
+         touch flatpak.tar
+         tar --exclude=flatpak.tar -czvf flatpak.tar .
+        
       - uses: actions/upload-artifact@v2
         with:
           name: flatpak_build
-          path: .
+          path: flatpak.tar
