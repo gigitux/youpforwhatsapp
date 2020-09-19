@@ -317,6 +317,7 @@ version = "1.0.0"
 dependencies = [
  "gdk",
  "gio",
+ "glib",
  "gtk",
  "webkit2gtk",
 ]

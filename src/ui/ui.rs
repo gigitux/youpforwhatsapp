@@ -6,13 +6,16 @@ use gtk::{
     Orientation, Settings, Switch, Window, WindowPosition, WindowType,
 };
 
+use glib::UserDirectory;
+
 use super::models;
 use crate::constants::*;
 use crate::logic::settings_logic::{set_full_screen, set_theme};
 use gdk::Screen;
 use webkit2gtk::{
     NavigationPolicyDecision, NavigationPolicyDecisionExt, NotificationPermissionRequest,
-    PermissionRequestExt, PolicyDecisionType, URIRequestExt, WebContext, WebView, WebViewExt,
+    PermissionRequestExt, PolicyDecisionType, URIRequestExt, WebContext, WebContextExt, WebView,
+    WebViewExt,
 };
 
 fn build_and_get_headbar() -> models::CustomHeader {
@@ -24,6 +27,8 @@ fn build_and_get_headbar() -> models::CustomHeader {
 
 fn build_and_get_webview() -> models::CustomWebView {
     let context = WebContext::get_default().unwrap();
+
+    context.set_spell_checking_enabled(true);
 
     models::CustomWebView {
         webview: WebView::new_with_context(&context),
@@ -82,6 +87,14 @@ pub fn build_ui(application: &Application) {
             set_full_screen(&web_view, &custom_settings_clone, is_full_screen_enabled);
         });
     custom_webview.webview.load_uri(constants::URL);
+
+    let download_folder = glib::get_user_special_dir(UserDirectory::Downloads)
+        .map(|directory| directory.as_path().display().to_string());
+    custom_webview
+        .webview
+        .download_uri(&download_folder.unwrap());
+    custom_webview.webview.load_uri(constants::URL);
+
     custom_webview
         .webview
         .connect_decide_policy(
