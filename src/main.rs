@@ -1,8 +1,3 @@
-extern crate gdk;
-extern crate gio;
-extern crate gtk;
-extern crate webkit2gtk;
-
 use gio::prelude::*;
 use gtkwhats::constants::*;
 use gtkwhats::ui;
