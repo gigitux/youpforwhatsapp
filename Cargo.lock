@@ -315,6 +315,7 @@ dependencies = [
 name = "gtkwhats"
 version = "1.0.0"
 dependencies = [
+ "gdk",
  "gio",
  "gtk",
  "webkit2gtk",
