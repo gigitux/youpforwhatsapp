@@ -1,18 +1,19 @@
-
 use gio::{ApplicationExt, Settings as GSettings, SettingsExt as GSettingsExt};
+use gtk::functions::show_uri;
 use gtk::prelude::*;
 use gtk::{
-    AboutDialog, Align, Application, ApplicationWindow, Box, Button, HeaderBar, IconSize,
-    Label, Orientation, Settings, Switch, Window, WindowPosition, WindowType,
-};
-
-use webkit2gtk::{
-    NotificationPermissionRequest, PermissionRequestExt, WebContext, WebView, WebViewExt,
+    AboutDialog, Align, Application, ApplicationWindow, Box, Button, HeaderBar, IconSize, Label,
+    Orientation, Settings, Switch, Window, WindowPosition, WindowType,
 };
 
 use super::models;
 use crate::constants::*;
 use crate::logic::settings_logic::{set_full_screen, set_theme};
+use gdk::Screen;
+use webkit2gtk::{
+    NavigationPolicyDecision, NavigationPolicyDecisionExt, NotificationPermissionRequest,
+    PermissionRequestExt, PolicyDecisionType, URIRequestExt, WebContext, WebView, WebViewExt,
+};
 
 fn build_and_get_headbar() -> models::CustomHeader {
     let container = HeaderBar::new();
@@ -81,6 +82,29 @@ pub fn build_ui(application: &Application) {
             set_full_screen(&web_view, &custom_settings_clone, is_full_screen_enabled);
         });
     custom_webview.webview.load_uri(constants::URL);
+    custom_webview
+        .webview
+        .connect_decide_policy(
+            move |_, policy, policy_decison_type| match policy_decison_type {
+                PolicyDecisionType::NewWindowAction => {
+                    let policy = policy
+                        .clone()
+                        .downcast::<NavigationPolicyDecision>()
+                        .expect("Unable to cast policy");
+                    let url = policy.get_request().unwrap().get_uri().unwrap();
+
+                    match show_uri(Screen::get_default().as_ref(), url.as_str(), 0) {
+                        Ok(action) => action,
+                        Err(_) => panic!("Error to open this url: {:?}", url),
+                    }
+                    return true;
+                }
+
+                PolicyDecisionType::NavigationAction => true,
+                PolicyDecisionType::Response => true,
+                PolicyDecisionType::__Unknown(_) => true,
+            },
+        );
 
     custom_webview
         .webview
