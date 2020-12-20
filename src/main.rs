@@ -1,13 +1,18 @@
+mod controllers;
+mod models;
+mod views;
+
 use gio::prelude::*;
-use gtkwhats::constants::*;
-use gtkwhats::ui;
+use models::constants;
 use std::env::args;
+use views::ui;
+
 fn main() {
     let application = gtk::Application::new(Some(constants::APPLICATION_NAME), Default::default())
         .expect("Initialization failed...");
 
     application.connect_activate(|app| {
-        ui::ui::build_ui(app);
+        ui::build_ui(app);
     });
 
     application.run(&args().collect::<Vec<_>>());
