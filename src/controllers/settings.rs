@@ -1,7 +1,8 @@
-use gio::{Settings as GSettings, SettingsExt as GSettingsExt};
-use gtk::{Settings, SettingsExt};
-
+use gio::SettingsExt;
+use gtk::{Switch, SwitchExt};
 use webkit2gtk::{WebView, WebViewExt};
+
+use crate::models::applications::GSettings;
 
 pub fn set_full_screen(
     web_view: &WebView,
@@ -17,7 +18,7 @@ pub fn set_full_screen(
                     var style = document.createElement('style');            
                     style.type = 'text/css';
                     style.id = 'gtkwhats';
-                    var css = '.h70RQ {width: 100vw !important}';
+                    var css = '._36Q2N {width: 100vw !important}';
                     // Append the css rules to the style node
                     style.appendChild(document.createTextNode(css));
                     
@@ -47,35 +48,6 @@ pub fn set_full_screen(
     }
 }
 
-pub fn set_theme(
-    web_view: &WebView,
-    general_settings: &Settings,
-    custom_settings: &GSettings,
-    is_dark_mode_enabled: bool,
-) {
-    if is_dark_mode_enabled {
-        match custom_settings.set_boolean("dark-theme", true) {
-            Ok(_) => {
-                general_settings.set_property_gtk_application_prefer_dark_theme(true);
-                web_view.run_javascript(
-                    "document.body.classList.add('dark')",
-                    None::<&gio::Cancellable>,
-                    |_result| {},
-                );
-            }
-            Err(_) => {}
-        }
-    } else {
-        match custom_settings.set_boolean("dark-theme", false) {
-            Ok(_) => {
-                general_settings.set_property_gtk_application_prefer_dark_theme(false);
-                web_view.run_javascript(
-                    "document.body.classList.remove('dark')",
-                    None::<&gio::Cancellable>,
-                    |_result| {},
-                );
-            }
-            Err(_) => {}
-        }
-    }
+pub fn toggle_full_screen(switch: &Switch, web_view: &WebView, custom_settings: &GSettings) {
+    set_full_screen(web_view, custom_settings, switch.get_state())
 }
