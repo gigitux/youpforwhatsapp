@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
-   <schema path="/com/gigitux/gtkwhats/" id="com.gigitux.gtkwhats" gettext-domain="gnome-podcasts">
+   <schema path="/com/gigitux/youp/" id="com.gigitux.youp"  gettext-domain="com.gigitux.youp">
       <key name="dark-theme" type="b">
          <default>true</default>
          <summary>Dark theme is active</summary>
@@ -8,6 +8,10 @@
       <key name="full-screen" type="b">
          <default>false</default>
          <summary>Full screen is active</summary>
+      </key>
+      <key name="tray-icon" type="b">
+         <default>true</default>
+         <summary>Tray Icon is active</summary>
       </key>
       <key name="persist-window-geometry-height" type="i">
          <default>640</default>

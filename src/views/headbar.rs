@@ -7,15 +7,14 @@ use gtk::{
 use webkit2gtk::WebView;
 
 use crate::{
-    controllers::{
-        about::open_about_page,
-        headbar::{open_dialog, toogle_theme},
-    },
+    controllers::{about::open_about_page, headbar::toogle_theme},
     models::{
         applications::{CustomHeader, GSettings},
         constants,
     },
 };
+
+use super::settings::create_settings_dialog;
 
 pub fn create_headbar(
     general_settings: &Settings,
@@ -48,9 +47,10 @@ pub fn create_headbar(
 
     headbar.pack_end(&vbox);
     headbar.pack_end(&settings_button);
+    headbar.set_title(Some(constants::TITLE));
 
     settings_button.connect_clicked(
-        clone!(@strong web_view, @strong custom_settings => move |_| open_dialog(&web_view, &custom_settings)),
+        clone!(@strong web_view, @strong custom_settings => move |_| create_settings_dialog(&web_view, &custom_settings)),
     );
 
     headbar.pack_end(&about_button);

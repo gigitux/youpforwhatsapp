@@ -1,4 +1,4 @@
-project('gtkwhats',
+project('youp',
         'rust',
         version: '0.1.0')
         dependency('glib-2.0')

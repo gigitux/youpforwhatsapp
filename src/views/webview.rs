@@ -1,18 +1,17 @@
 use gdk::Screen;
 use gio::SettingsExt;
-use glib::{Cast, ObjectExt, UserDirectory};
+use glib::{clone, Cast, UserDirectory};
 use gtk::{show_uri, Settings};
 use webkit2gtk::{
-    NavigationPolicyDecision, NavigationPolicyDecisionExt, NotificationPermissionRequest,
-    PermissionRequestExt, PolicyDecisionType, URIRequestExt, WebContext, WebContextExt, WebView,
-    WebViewExt,
+    NavigationPolicyDecision, NavigationPolicyDecisionExt, PolicyDecisionType, SecurityOrigin,
+    URIRequestExt, WebContext, WebContextExt, WebView, WebViewExt,
 };
 
 use crate::{
-    controllers::{headbar::toogle_theme, settings::set_full_screen},
+    controllers::{headbar::toogle_theme, settings::toggle_full_screen},
     models::{
         applications::{CustomWebView, GSettings},
-        constants,
+        constants::{self, URL},
     },
 };
 
@@ -20,14 +19,14 @@ pub fn create_webview(general_settings: &Settings, custom_settings: &GSettings) 
     let context = WebContext::get_default().unwrap();
 
     context.set_spell_checking_enabled(true);
+    let origin = SecurityOrigin::new_for_uri(URL);
+
+    context.initialize_notification_permissions(&[&origin], &[]);
 
     let webview = WebView::with_context(&context);
     let is_full_screen_enabled = custom_settings.get_boolean("full-screen");
     let is_dark_mode_enabled = custom_settings.get_boolean("dark-theme");
 
-    dbg!(is_dark_mode_enabled);
-
-    set_full_screen(&webview, &custom_settings, is_full_screen_enabled);
     webview.load_uri(constants::URL);
 
     let download_folder = glib::get_user_special_dir(UserDirectory::Downloads)
@@ -58,14 +57,11 @@ pub fn create_webview(general_settings: &Settings, custom_settings: &GSettings) 
         },
     );
 
-    webview.connect_permission_request(move |_, perm_req| {
-        if perm_req.is::<NotificationPermissionRequest>() {
-            perm_req.allow();
-            return true;
-        }
-
-        false
-    });
+    webview.connect_load_changed(
+        clone!(@strong custom_settings, @strong is_full_screen_enabled => move |webview, _| {
+            toggle_full_screen(webview, &custom_settings, is_full_screen_enabled)
+        }),
+    );
 
     toogle_theme(
         &general_settings,

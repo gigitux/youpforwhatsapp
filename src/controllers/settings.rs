@@ -1,10 +1,9 @@
 use gio::SettingsExt;
-use gtk::{Switch, SwitchExt};
 use webkit2gtk::{WebView, WebViewExt};
 
 use crate::models::applications::GSettings;
 
-pub fn set_full_screen(
+pub fn toggle_full_screen(
     web_view: &WebView,
     custom_settings: &GSettings,
     is_full_screen_enabled: bool,
@@ -48,6 +47,24 @@ pub fn set_full_screen(
     }
 }
 
-pub fn toggle_full_screen(switch: &Switch, web_view: &WebView, custom_settings: &GSettings) {
-    set_full_screen(web_view, custom_settings, switch.get_state())
+pub fn toggle_tray_icon(is_tray_icon_enabled: bool, custom_settings: &GSettings) {
+    if is_tray_icon_enabled {
+        enable_tray_icon(custom_settings)
+    } else {
+        disable_tray_icon(custom_settings)
+    }
+}
+
+fn disable_tray_icon(custom_settings: &GSettings) {
+    match custom_settings.set_boolean("tray-icon", false) {
+        Ok(_) => {}
+        Err(_) => {}
+    }
+}
+
+fn enable_tray_icon(custom_settings: &GSettings) {
+    match custom_settings.set_boolean("tray-icon", true) {
+        Ok(_) => {}
+        Err(_) => {}
+    }
 }

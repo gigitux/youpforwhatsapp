@@ -1,10 +1,10 @@
 [Desktop Entry]
-Name=Whatsapp
-Comment=A simple wrapper for whatsapp
+Name=Youp for Whatsapp
+Comment=A wrapper for whatsapp written in Rust
 Type=Application
-Exec=gtkwhats
+Exec=youp
 Terminal=false
 Categories=Utility;GTK;
 Keywords=Rust;Flatpak;GTK;
-Icon=com.gigitux.gtkwhats
+Icon=com.gigitux.youp
 StartupNotify=false

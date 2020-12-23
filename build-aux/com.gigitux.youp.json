@@ -1,10 +1,10 @@
 {
-  "app-id": "com.gigitux.gtkwhats",
+  "app-id": "com.gigitux.youp",
   "runtime": "org.gnome.Platform",
-  "runtime-version": "3.36",
+  "runtime-version": "3.38",
   "sdk": "org.gnome.Sdk",
   "sdk-extensions": ["org.freedesktop.Sdk.Extension.rust-stable"],
-  "command": "gtkwhats",
+  "command": "youp",
   "finish-args": [
     "--share=ipc",
     "--share=network",
@@ -19,12 +19,12 @@
     "build-args": ["--share=network"],
     "env": {
       "RUSTFLAGS": "--remap-path-prefix =../",
-      "CARGO_HOME": "/run/build/gtkwhats/cargo"
+      "CARGO_HOME": "/run/build/youp/cargo"
     }
   },
   "modules": [
     {
-      "name": "gtkwhats",
+      "name": "youp",
       "buildsystem": "meson",
       "sources": [
         {
