@@ -1,7 +1,7 @@
 {
   "app-id": "com.gigitux.youp",
   "runtime": "org.gnome.Platform",
-  "runtime-version": "3.38",
+  "runtime-version": "3.36",
   "sdk": "org.gnome.Sdk",
   "sdk-extensions": ["org.freedesktop.Sdk.Extension.rust-stable"],
   "command": "youp",
@@ -12,7 +12,8 @@
     "--socket=wayland",
     "--socket=session-bus",
     "--device=dri",
-    "--socket=pulseaudio"
+    "--socket=pulseaudio",
+    "--filesystem=xdg-download"
   ],
   "build-options": {
     "append-path": "/usr/lib/sdk/rust-stable/bin",
@@ -23,6 +24,7 @@
     }
   },
   "modules": [
+    "shared-modules/libappindicator/libappindicator-gtk3-introspection-12.10.json",
     {
       "name": "youp",
       "buildsystem": "meson",

@@ -2,7 +2,7 @@
 <schemalist>
    <schema path="/com/gigitux/youp/" id="com.gigitux.youp"  gettext-domain="com.gigitux.youp">
       <key name="dark-theme" type="b">
-         <default>true</default>
+         <default>false</default>
          <summary>Dark theme is active</summary>
       </key>
       <key name="full-screen" type="b">

@@ -1,7 +1,7 @@
 use std::cell::RefCell;
 
 use glib::clone;
-use gtk::prelude::*;
+use gtk::{prelude::*, StateFlags};
 use gtk::{Application, ApplicationWindow, Settings, WindowPosition};
 use webkit2gtk::{NotificationExt, WebViewExt};
 
@@ -61,6 +61,7 @@ pub fn build_ui(application: &Application) {
     application.connect_delete_event(
         clone!(@strong settings => move |application, _| match settings.get_boolean("tray-icon") {
             true => {
+                application.set_state_flags(StateFlags::ACTIVE, true);
                 application.hide();
                 Inhibit(true)
             }
