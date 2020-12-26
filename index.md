@@ -35,3 +35,15 @@ Or you can help in development and translation.
 ### Development
 
 You are welcome to contribute code and provide pull requests for Youp.
+
+For run a compiled version:
+
+```
+glib-compile-schemas ./data
+GSETTINGS_SCHEMA_DIR=./data cargo run
+```
+
+For run a flatpak version:
+
+```
+flatpak-builder --install repo build-aux/com.gigitux.gtkwhats.json --force-clean --user -y
