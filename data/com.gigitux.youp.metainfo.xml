@@ -18,7 +18,7 @@
   </description>
   <screenshots>
     <screenshot type="default">
-      <image>https://raw.githubusercontent.com/gigitux/gtkwhats/master/youp.png</image>
+      <image>https://raw.githubusercontent.com/gigitux/youpforwhatsapp/master/youp.png</image>
       <caption>Main Window</caption>
     </screenshot>
   </screenshots>
@@ -42,5 +42,5 @@ https://hughsie.github.io/oars/index.html
   <developer_name>Luigi Teschio</developer_name>
   <update_contact>gigitux@gmail.com</update_contact>
 
-  <launchable type="desktop-id">com.gigitux.gtkwhats.desktop</launchable>
+  <launchable type="desktop-id">com.gigitux.youp.desktop</launchable>
 </component>

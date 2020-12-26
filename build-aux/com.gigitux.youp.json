@@ -1,7 +1,7 @@
 {
   "app-id": "com.gigitux.youp",
   "runtime": "org.gnome.Platform",
-  "runtime-version": "3.36",
+  "runtime-version": "3.38",
   "sdk": "org.gnome.Sdk",
   "sdk-extensions": ["org.freedesktop.Sdk.Extension.rust-stable"],
   "command": "youp",
@@ -33,6 +33,9 @@
           "type": "dir",
           "path": "../"
         }
+      ],
+      "post-install": [
+        "install -Dm 644 ./data/resources/128x128/com.gigitux.youp.png /app/share/app-info/icons/flatpak/64x64/com.gigitux.youp.png"
       ]
     }
   ]
