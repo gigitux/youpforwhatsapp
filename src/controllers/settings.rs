@@ -3,7 +3,7 @@ use webkit2gtk::{WebView, WebViewExt};
 
 use crate::models::applications::GSettings;
 
-pub fn toggle_full_screen(
+pub fn toogle_full_screen(
     web_view: &WebView,
     custom_settings: &GSettings,
     is_full_screen_enabled: bool,

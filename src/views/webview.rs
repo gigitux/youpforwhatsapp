@@ -8,7 +8,7 @@ use webkit2gtk::{
 };
 
 use crate::{
-    controllers::{headbar::toogle_theme, settings::toggle_full_screen},
+    controllers::{headbar::toogle_theme, settings::toogle_full_screen},
     models::{
         applications::{CustomWebView, GSettings},
         constants::{self, URL},
@@ -58,16 +58,13 @@ pub fn create_webview(general_settings: &Settings, custom_settings: &GSettings) 
     );
 
     webview.connect_load_changed(
-        clone!(@strong custom_settings, @strong is_full_screen_enabled => move |webview, _| {
-            toggle_full_screen(webview, &custom_settings, is_full_screen_enabled)
+        clone!(@strong custom_settings, @strong is_full_screen_enabled, @strong is_dark_mode_enabled, @strong general_settings => move |webview, _| {
+            toogle_full_screen(webview, &custom_settings, is_full_screen_enabled);
+            toogle_theme(&general_settings,
+                &custom_settings,
+                &webview,
+                is_dark_mode_enabled)
         }),
-    );
-
-    toogle_theme(
-        &general_settings,
-        &custom_settings,
-        &webview,
-        is_dark_mode_enabled,
     );
 
     CustomWebView { webview: webview }

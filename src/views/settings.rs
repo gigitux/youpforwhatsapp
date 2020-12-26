@@ -8,7 +8,7 @@ use gtk::{
 use webkit2gtk::WebView;
 
 use crate::{
-    controllers::settings::{toggle_full_screen, toggle_tray_icon},
+    controllers::settings::{toggle_tray_icon, toogle_full_screen},
     models::{
         applications::GSettings,
         constants::{FULL_SCREEN, TRAY_ICON},
@@ -54,7 +54,7 @@ fn create_full_screen_switch(web_view: &WebView, custom_settings: &GSettings) ->
     let web_view_cloned = web_view.clone();
     let custom_settings_cloned = custom_settings.clone();
     full_screen_switch.connect_changed_active(move |switch| {
-        toggle_full_screen(
+        toogle_full_screen(
             &web_view_cloned,
             &custom_settings_cloned,
             switch.get_state(),
