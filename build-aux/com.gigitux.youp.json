@@ -13,7 +13,7 @@
     "--socket=session-bus",
     "--device=dri",
     "--socket=pulseaudio",
-    "--filesystem=xdg-download"
+    "--filesystem=home"
   ],
   "build-options": {
     "append-path": "/usr/lib/sdk/rust-stable/bin",
