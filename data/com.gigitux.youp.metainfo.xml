@@ -1,29 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>com.gigitux.gtkwhats</id>
+  <id>com.gigitux.youp</id>
   <metadata_license>CC0</metadata_license>
   <project_license>MIT</project_license>
-  <name>Gtk Whats</name>
+  <name>Youp for whatsapp</name>
   <summary>Whatsapp</summary>
   <description>
-    <p>A simple wrapper for Whatsapp</p>
+    <p>
+    Youp makes it makes the use of whatsapp more convenient
+    </p>
+    <ul>
+      <li>Make whatsapp truly fullscreen</li>
+      <li>Conveniently switch to dark mode</li>
+      <li>Add icon in systray with different icon if there is new messages</li>
+      <li>Desktop Notification</li>
+    </ul>
   </description>
   <screenshots>
     <screenshot type="default">
-      <image>https://raw.githubusercontent.com/gigitux/gtkwhats/master/data/whatsapp_preview.gif</image>
+      <image>https://raw.githubusercontent.com/gigitux/gtkwhats/master/youp.png</image>
       <caption>Main Window</caption>
     </screenshot>
   </screenshots>
-  <url type="homepage">https://github.com/gigitux/gtkwhats</url>
+  <url type="homepage">https://luigitesch.io/youpforwhatsapp</url>
 <!--
 Open Age Rating Service
 https://hughsie.github.io/oars/index.html
 -->
   <content_rating type="oars-1.0" />
   <releases>
-    <release version="1.0" date="2020-06-13">
+    <release version="2.0" date="2020-06-13">
       <description>
-        <p>First release of Gtkwhats</p>
+        <p>Rebranding to youp</p>
       </description>
     </release>
   </releases>
