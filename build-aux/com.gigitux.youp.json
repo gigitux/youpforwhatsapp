@@ -13,7 +13,8 @@
     "--socket=session-bus",
     "--device=dri",
     "--socket=pulseaudio",
-    "--filesystem=home"
+    "--filesystem=home",
+    "--talk-name=org.kde.StatusNotifierWatcher"
   ],
   "build-options": {
     "append-path": "/usr/lib/sdk/rust-stable/bin",
@@ -33,9 +34,6 @@
           "type": "dir",
           "path": "../"
         }
-      ],
-      "post-install": [
-        "install -Dm 644 ./data/resources/128x128/com.gigitux.youp.png /app/share/app-info/icons/flatpak/64x64/com.gigitux.youp.png"
       ]
     }
   ]

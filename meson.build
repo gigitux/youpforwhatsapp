@@ -14,6 +14,6 @@ desktop_file_validate = find_program('desktop-file-validate', required: false)
 meson.add_install_script('build-aux/meson_post_install.py')
 meson.add_dist_script(
   'build-aux/dist-vendor.sh',
-  meson.build_root() / 'meson-dist' / meson.project_name() + '-' + '2.0.0',
+  meson.build_root() / 'meson-dist' / meson.project_name() + '-' + meson.project_version(),
   meson.source_root()
 )
