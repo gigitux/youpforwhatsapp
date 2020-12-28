@@ -6,7 +6,7 @@ application_id = 'com.gigitux.youp'
 
 gnome.compile_resources(
   application_id,
-  'com.gigitux.youp.xml',
+  '@0@.xml'.format(application_id),
   gresource_bundle: true,
   source_dir: '.',
   install_dir: datadir / application_id,
@@ -19,15 +19,15 @@ install_data(
     install_dir: datadir / 'applications'
 )
 
-install_data('./resources/16x16/@0@.png'.format(application_id),
+install_data('resources/16x16/@0@.png'.format(application_id),
              install_dir : 'share/icons/hicolor/16x16/apps')
-install_data('./resources/32x32/@0@.png'.format(application_id),
+install_data('resources/32x32/@0@.png'.format(application_id),
              install_dir : 'share/icons/hicolor/24x24/apps')
-install_data('./resources/64x64/@0@.png'.format(application_id),
+install_data('resources/64x64/@0@.png'.format(application_id),
              install_dir : 'share/icons/hicolor/64x64/apps')
-install_data('./resources/128x128/@0@.png'.format(application_id),
+install_data('resources/128x128/@0@.png'.format(application_id),
              install_dir : 'share/icons/hicolor/128x128/apps')
-install_data('./resources/256x256/@0@.png'.format(application_id),
+install_data('resources/256x256/@0@.png'.format(application_id),
              install_dir : 'share/icons/hicolor/256x256/apps')
 
 install_data(
