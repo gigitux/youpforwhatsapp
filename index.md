@@ -47,3 +47,4 @@ For run a flatpak version:
 
 ```
 flatpak-builder --install repo build-aux/com.gigitux.gtkwhats.json --force-clean --user -y
+```

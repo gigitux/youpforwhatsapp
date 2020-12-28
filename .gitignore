@@ -1,0 +1,5 @@
+.flatpak-builder/
+_buildir/
+build-aux/
+repo/
+target/
