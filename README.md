@@ -22,7 +22,7 @@ Youp makes it makes the use of whatsapp more convenient thanks to the possibilit
 
 ### Flatpak
 
-Peek can be installed on all distributions supporting [Flatpak](http://flatpak.org/) from [Flathub](https://flathub.org/apps/details/com.gigitux.youp).
+Youp can be installed on all distributions supporting [Flatpak](http://flatpak.org/) from [Flathub](https://flathub.org/apps/details/com.gigitux.youp).
 
 ## Frequently Asked Questions
 
