@@ -12,7 +12,7 @@ export APP_BIN="$5"
 if [ $BUILDTYPE = "release" ]
 then
     echo "RELEASE MODE"
-    cargo build --release --manifest-path \
+    cargo build --locked --release --manifest-path \
         "$MESON_SOURCE_ROOT"/Cargo.toml && \
         cp "$CARGO_TARGET_DIR"/release/"$APP_BIN" "$OUTPUT"
 else
