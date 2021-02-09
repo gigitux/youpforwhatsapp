@@ -15,17 +15,17 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Create vender
+      - name: Create vendor
         run: cargo vendor
       - name: Set configuration
         run: |
           mkdir .cargo && touch .cargo/.config
-          mv build-aux/cargo_offline_config .cargo/config 
+          mv build-aux/cargo_offline_config .cargo/config
       - name: Create package
         run: |
          touch flatpak.tar
          tar --exclude=flatpak.tar -czvf flatpak.tar .
-        
+
       - uses: actions/upload-artifact@v2
         with:
           name: flatpak_build

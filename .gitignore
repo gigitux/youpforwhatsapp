@@ -4,6 +4,8 @@
 /build-dir
 /.flatpak-builder
 /_buildir
+/vendor
+/build
 /build-aux/.*
 data/gschemas.compiled
 data/com.gigitux.youp.gresource
