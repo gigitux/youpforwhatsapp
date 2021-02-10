@@ -1,5 +1,20 @@
 sources = [
     'main.rs',
+    'controllers/ui.rs',
+    'controllers/settings.rs',
+    'controllers/about.rs',
+    'controllers/mod.rs',
+    'controllers/indicator.rs',
+    'controllers/headbar.rs',
+    'models/applications.rs',
+    'models/constants.rs',
+    'models/mod.rs',
+    'views/ui.rs',
+    'views/settings.rs',
+    'views/mod.rs',
+    'views/indicator.rs',
+    'views/webview.rs',
+    'views/headbar.rs'
 ]
 
 cargo_script = find_program(join_paths(meson.source_root(), 'build-aux/cargo.sh'))

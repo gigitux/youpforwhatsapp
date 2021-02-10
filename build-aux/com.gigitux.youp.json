@@ -20,6 +20,7 @@
     "append-path": "/usr/lib/sdk/rust-stable/bin",
     "build-args": ["--share=network"],
     "env": {
+      "IS_FLATPAK": "1",
       "RUSTFLAGS": "--remap-path-prefix =../",
       "CARGO_HOME": "/run/build/youp/cargo"
     }

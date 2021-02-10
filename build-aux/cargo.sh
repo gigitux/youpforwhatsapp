@@ -9,10 +9,16 @@ export BUILDTYPE="$4"
 export APP_BIN="$5"
 
 
-if [[ $BUILDTYPE = "release" ]]
+if [ $IS_FLATPAK ]
+then
+    echo "FLATPAK MODE"
+    cargo build --locked --offline --release --manifest-path \
+        "$MESON_SOURCE_ROOT"/Cargo.toml && \
+        cp "$CARGO_TARGET_DIR"/release/"$APP_BIN" "$OUTPUT"
+elif [ $BUILDTYPE = "release" ]
 then
     echo "RELEASE MODE"
-    cargo --offline --locked build --release --manifest-path \
+    cargo build --locked --release --manifest-path \
         "$MESON_SOURCE_ROOT"/Cargo.toml && \
         cp "$CARGO_TARGET_DIR"/release/"$APP_BIN" "$OUTPUT"
 else
