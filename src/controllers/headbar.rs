@@ -26,28 +26,20 @@ fn set_theme(
     is_dark_mode_enabled: bool,
 ) {
     if is_dark_mode_enabled {
-        match custom_settings.set_boolean("dark-theme", true) {
-            Ok(_) => {
-                general_settings.set_property_gtk_application_prefer_dark_theme(true);
-                web_view.run_javascript(
-                    "document.body.classList.add('dark')",
-                    None::<&gio::Cancellable>,
-                    |_result| {},
-                );
-            }
-            Err(_) => {}
+        if custom_settings.set_boolean("dark-theme", true).is_ok() {
+            general_settings.set_property_gtk_application_prefer_dark_theme(true);
+            web_view.run_javascript(
+                "document.body.classList.add('dark')",
+                None::<&gio::Cancellable>,
+                |_result| {},
+            );
         }
-    } else {
-        match custom_settings.set_boolean("dark-theme", false) {
-            Ok(_) => {
-                general_settings.set_property_gtk_application_prefer_dark_theme(false);
-                web_view.run_javascript(
-                    "document.body.classList.remove('dark')",
-                    None::<&gio::Cancellable>,
-                    |_result| {},
-                );
-            }
-            Err(_) => {}
-        }
+    } else if custom_settings.set_boolean("dark-theme", false).is_ok() {
+        general_settings.set_property_gtk_application_prefer_dark_theme(false);
+        web_view.run_javascript(
+            "document.body.classList.remove('dark')",
+            None::<&gio::Cancellable>,
+            |_result| {},
+        );
     }
 }

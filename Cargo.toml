@@ -20,6 +20,7 @@ features = ["v3_16"]
 [dependencies.gio]
 version = "0.9.1"
 features = ["v2_44"]
+
 [dependencies.webkit2gtk]
 version= "0.11.0"
 features= ["v2_16"]

@@ -7,7 +7,7 @@ pub fn set_status_indicator(
     let title_tab = web_view
         .get_title()
         .map(move |title| title.to_string())
-        .unwrap_or_else(|| String::new());
+        .unwrap_or_else(String::new);
 
     match title_tab.chars().any(|char| char.is_numeric()) {
         true => app_indicator

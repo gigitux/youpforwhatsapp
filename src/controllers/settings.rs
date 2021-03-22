@@ -9,41 +9,33 @@ pub fn toogle_full_screen(
     is_full_screen_enabled: bool,
 ) {
     if is_full_screen_enabled {
-        match custom_settings.set_boolean("full-screen", true) {
-            Ok(_) => {
-                web_view.run_javascript(
-                    "
-                    var head = document.head || document.getElementsByTagName('head')[0];
-                    var style = document.createElement('style');            
-                    style.type = 'text/css';
-                    style.id = 'gtkwhats';
-                    var css = '._36Q2N {width: 100vw !important}';
-                    // Append the css rules to the style node
-                    style.appendChild(document.createTextNode(css));
-                    
-                    // Append the style node to the head of the page
-                    head.appendChild(style); 
-                    ",
-                    None::<&gio::Cancellable>,
-                    |_result| {},
-                );
-            }
-            Err(_) => {}
+        if custom_settings.set_boolean("full-screen", true).is_ok() {
+            web_view.run_javascript(
+                "
+                var head = document.head || document.getElementsByTagName('head')[0];
+                var style = document.createElement('style');            
+                style.type = 'text/css';
+                style.id = 'gtkwhats';
+                var css = '._36Q2N {width: 100vw !important}';
+                // Append the css rules to the style node
+                style.appendChild(document.createTextNode(css));
+                
+                // Append the style node to the head of the page
+                head.appendChild(style); 
+                ",
+                None::<&gio::Cancellable>,
+                |_result| {},
+            );
         }
-    } else {
-        match custom_settings.set_boolean("full-screen", false) {
-            Ok(_) => {
-                web_view.run_javascript(
-                    r##"
-                    var elms = document.querySelectorAll('[id="gtkwhats"]');
-                    elms.forEach((e) => e.remove());
-                   "##,
-                    None::<&gio::Cancellable>,
-                    |_result| {},
-                );
-            }
-            Err(_) => {}
-        }
+    } else if custom_settings.set_boolean("full-screen", false).is_ok() {
+        web_view.run_javascript(
+            r##"
+            var elms = document.querySelectorAll('[id="gtkwhats"]');
+            elms.forEach((e) => e.remove());
+           "##,
+            None::<&gio::Cancellable>,
+            |_result| {},
+        );
     }
 }
 
@@ -56,15 +48,9 @@ pub fn toggle_tray_icon(is_tray_icon_enabled: bool, custom_settings: &GSettings)
 }
 
 fn disable_tray_icon(custom_settings: &GSettings) {
-    match custom_settings.set_boolean("tray-icon", false) {
-        Ok(_) => {}
-        Err(_) => {}
-    }
+    let _ = custom_settings.set_boolean("tray-icon", false);
 }
 
 fn enable_tray_icon(custom_settings: &GSettings) {
-    match custom_settings.set_boolean("tray-icon", true) {
-        Ok(_) => {}
-        Err(_) => {}
-    }
+    let _ = custom_settings.set_boolean("tray-icon", true);
 }
