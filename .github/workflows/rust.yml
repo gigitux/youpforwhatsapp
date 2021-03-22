@@ -15,12 +15,18 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+
+      - name: Linting
+        run: cargo clippy
+
       - name: Create vendor
         run: cargo vendor
+
       - name: Set configuration
         run: |
           mkdir .cargo && touch .cargo/.config
           mv build-aux/cargo_offline_config .cargo/config
+
       - name: Create package
         run: |
          touch flatpak.tar
