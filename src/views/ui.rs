@@ -50,7 +50,7 @@ pub fn build_ui(application: &Application) {
     webview.connect_show_notification(clone!(@strong application => move |_, notification| {
 
         notification.connect_clicked(clone!(@strong application => move |_| {
-            &application.present();
+            application.present();
         }));
 
         false
@@ -73,5 +73,5 @@ pub fn build_ui(application: &Application) {
 }
 
 fn get_settings() -> Settings {
-    return Settings::get_default().unwrap();
+    Settings::get_default().unwrap()
 }
