@@ -10,14 +10,23 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  create-package:
+  ci:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
 
+      - name: Install dependencies
+        run: sudo apt install -y build-essential libgtk-3-dev libwebkit2gtk-4.0-dev
+
       - name: Linting
         run: cargo clippy
+
+  create-package:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
 
       - name: Create vendor
         run: cargo vendor
