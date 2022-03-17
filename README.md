@@ -46,6 +46,6 @@ GSETTINGS_SCHEMA_DIR=./data cargo run
 For run a flatpak version:
 
 ```
-flatpak-builder --install repo build-aux/com.gigitux.gtkwhats.json --force-clean --user -y
+flatpak-builder --install repo build-aux/com.gigitux.gtkwhats.yml --force-clean --user -y
 ```
 
